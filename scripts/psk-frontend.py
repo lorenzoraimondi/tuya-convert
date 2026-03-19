@@ -4,6 +4,7 @@ import socket
 import select
 import ssl
 import sslpsk
+import os
 
 from Cryptodome.Cipher import AES
 from hashlib import md5
@@ -96,7 +97,10 @@ class PskFrontend():
 
 def main():
 	gateway = '10.42.42.1'
-	proxies = [PskFrontend(gateway, 443, gateway, 80), PskFrontend(gateway, 8886, gateway, 1883)]
+	mqtt_port = int(os.environ.get('MQTT_PORT', 1883))
+	proxies = [PskFrontend(gateway, 443, gateway, 80), PskFrontend(gateway, 8886, gateway, mqtt_port)]
+
+	print(f"PSK frontend configured with MQTT port: {mqtt_port}")
 
 
 	while True:

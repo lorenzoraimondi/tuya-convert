@@ -90,6 +90,7 @@ Preparations:
 * if you have already cloned this repo just cd into the directory and execute `git pull`
 * cp .env-template .env 
 * adjust the created .env-file, it contains usage information as comments
+* (Optional) if your host already has an MQTT broker on port 1883, you can set `MQTT_PORT` in your .env file to use a different port (e.g. `MQTT_PORT=1884`)
 
 Building and running your container:
 * `docker-compose build && docker-compose run --rm tuya`

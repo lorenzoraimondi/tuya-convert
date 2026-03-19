@@ -141,7 +141,8 @@ check_port tcp 80 "answer HTTP requests"
 check_port tcp 443 "answer HTTPS requests"
 check_port udp 6666 "detect unencrypted Tuya firmware"
 check_port udp 6667 "detect encrypted Tuya firmware"
-check_port tcp 1883 "run MQTT"
+MQTT_PORT=${MQTT_PORT:-1883}
+check_port tcp $MQTT_PORT "run MQTT"
 check_port tcp 8886 "run MQTTS"
 check_firewall
 check_blacklist

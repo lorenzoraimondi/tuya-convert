@@ -98,9 +98,10 @@ class PskFrontend():
 def main():
 	gateway = '10.42.42.1'
 	mqtt_port = int(os.environ.get('MQTT_PORT', 1883))
-	proxies = [PskFrontend(gateway, 443, gateway, 80), PskFrontend(gateway, 8886, gateway, mqtt_port)]
+	mqtts_port = int(os.environ.get('MQTTS_PORT', 8886))
+	proxies = [PskFrontend(gateway, 443, gateway, 80), PskFrontend(gateway, mqtts_port, gateway, mqtt_port)]
 
-	print(f"PSK frontend configured with MQTT port: {mqtt_port}")
+	print(f"PSK frontend configured with MQTT port: {mqtt_port}, MQTTS port: {mqtts_port}")
 
 
 	while True:
